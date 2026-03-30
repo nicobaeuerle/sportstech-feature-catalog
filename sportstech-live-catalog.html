@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sportstech Live – Feature Catalog</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E30613;
+    --red-dark: #b00510;
+    --black: #000000;
+    --white: #FFFFFF;
+    --gray-dark: #1A1A1A;
+    --gray-mid: #2a2a2a;
+    --gray-light: #3a3a3a;
+    --gray-text: #888;
+    --ios-color: #2563eb;
+    --android-color: #16a34a;
+    --flagship-color: #E30613;
+    --sgym-color: #4a4a4a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: #0a0a0a;
+    color: var(--white);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 80px 60px 60px;
+    background: #0a0a0a;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(227,6,19,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(227,6,19,0.4), transparent);
+  }
+
+  .hero-inner { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; width: 100%; }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--red);
+  }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(48px, 7vw, 90px);
+    font-weight: 800;
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 span { color: var(--red); }
+
+  .hero-sub {
+    font-size: 16px;
+    color: #aaa;
+    max-width: 560px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  .hero-meta {
+    margin-top: 36px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hero-meta-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray-text);
+  }
+
+  .hero-meta-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ccc;
+  }
+
+  /* FILTER BAR */
+  .filter-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 14px 60px;
+  }
+
+  .filter-bar-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray-text);
+    margin-right: 8px;
+  }
+
+  .filter-btn {
+    padding: 7px 18px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: transparent;
+    color: #aaa;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .filter-btn:hover { border-color: rgba(255,255,255,0.25); color: #fff; }
+
+  .filter-btn.active {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+  }
+
+  .filter-btn[data-filter="ios"].active { background: var(--ios-color); border-color: var(--ios-color); }
+  .filter-btn[data-filter="android"].active { background: var(--android-color); border-color: var(--android-color); }
+  .filter-btn[data-filter="flagship"].active { background: var(--flagship-color); border-color: var(--flagship-color); }
+  .filter-btn[data-filter="sgym"].active { background: var(--sgym-color); border-color: var(--sgym-color); }
+
+  /* MAIN CONTENT */
+  .main { max-width: 1400px; margin: 0 auto; padding: 60px 60px 40px; }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .section.visible { opacity: 1; transform: translateY(0); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-title::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 28px;
+    background: var(--red);
+    border-radius: 2px;
+  }
+
+  .section-count {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--gray-text);
+    background: rgba(255,255,255,0.05);
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+
+  /* CARD GRID */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 1100px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 680px) { .card-grid { grid-template-columns: 1fr; } }
+
+  /* FEATURE CARD */
+  .feature-card {
+    background: var(--gray-dark);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 22px;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(227,6,19,0.25);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .card-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  /* TAGS */
+  .tag {
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .tag-beta { background: rgba(139,92,246,0.2); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
+  .tag-new { background: rgba(16,185,129,0.2); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+  .tag-flagship { background: rgba(227,6,19,0.15); color: #f87171; border: 1px solid rgba(227,6,19,0.3); }
+  .tag-sgym { background: rgba(100,100,100,0.2); color: #aaa; border: 1px solid rgba(100,100,100,0.3); }
+
+  .card-desc {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.6;
+  }
+
+  .card-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .card-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .card-bullets li {
+    font-size: 12.5px;
+    color: #bbb;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+
+  .card-bullets li::before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--red);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  /* PLATFORM BADGES */
+  .platform-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: auto;
+  }
+
+  .platform-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+  }
+
+  .platform-badge.active-ios { background: rgba(37,99,235,0.2); color: #60a5fa; border-color: rgba(37,99,235,0.35); }
+  .platform-badge.active-android { background: rgba(22,163,74,0.2); color: #4ade80; border-color: rgba(22,163,74,0.35); }
+  .platform-badge.active-flagship { background: rgba(227,6,19,0.15); color: #f87171; border-color: rgba(227,6,19,0.3); }
+  .platform-badge.active-sgym { background: rgba(100,100,100,0.2); color: #aaa; border-color: rgba(100,100,100,0.35); }
+
+  .platform-badge.inactive {
+    background: transparent;
+    color: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.07);
+  }
+
+  .platform-notes {
+    font-size: 11px;
+    color: #666;
+    font-style: italic;
+    line-height: 1.5;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 28px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .footer-version {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #555;
+  }
+
+  .footer-notice {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.12);
+  }
+
+  .footer-logo span { color: rgba(227,6,19,0.4); }
+
+  /* HIDDEN */
+  .feature-card.hidden { display: none; }
+  .section.all-hidden { display: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { padding: 60px 24px 40px; }
+    .filter-bar { padding: 12px 24px; }
+    .main { padding: 40px 24px; }
+    footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Feature Catalog v1.0</div>
+    <h1>Sportstech <span>Live</span><br>Feature Catalog</h1>
+    <p class="hero-sub">A complete overview of all live features across iOS, Android, Flagship (sLine) and sGYM</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Version</span>
+        <span class="hero-meta-value">1.0 – March 2026</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Status</span>
+        <span class="hero-meta-value">Draft – Android & Flagship validated</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Platforms</span>
+        <span class="hero-meta-value">iOS · Android · Flagship (sLine) · sGYM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-bar-inner">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="ios">iOS</button>
+    <button class="filter-btn" data-filter="android">Android</button>
+    <button class="filter-btn" data-filter="flagship">Flagship (sLine)</button>
+    <button class="filter-btn" data-filter="sgym">sGYM</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main" id="catalog"></main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span class="footer-version">Sportstech Live Feature Catalog v1.0 – March 2026</span>
+      <span class="footer-notice">For internal and partner use only</span>
+    </div>
+    <div class="footer-logo">Sportstech <span>Live</span></div>
+  </div>
+</footer>
+
+<script>
+const data = {
+  "meta": {
+    "product": "Sportstech Live",
+    "version": "1.0",
+    "date": "2026-03-30",
+    "platforms": ["iOS", "Android", "Flagship (sLine)", "sGYM"],
+    "status": "Draft – Android & Flagship validated via screenshots"
+  },
+  "sections": [
+    {
+      "id": "core-platform",
+      "title": "Core Platform",
+      "features": [
+        {
+          "name": "Registration & Login",
+          "description": "User account creation and authentication across all entry points.",
+          "bullets": [
+            "Email/password registration with OTP verification",
+            "Phone number registration with SMS OTP",
+            "Social login: Apple, Google, Facebook",
+            "Date of birth collected during onboarding",
+            "Language selection on welcome screen",
+            "Terms of service & privacy consent in flow"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": true },
+          "platform_notes": "Apple Sign-In: iOS only. Android: primary via phone number, also Email & Google. Flagship: Email, Phone, Facebook, Google only. sGYM: QR code login (links to mobile app), Phone, Google, Facebook, Email."
+        },
+        {
+          "name": "Login Options Management",
+          "tag": "New",
+          "description": "Users can manage and link multiple login methods to one account.",
+          "bullets": [
+            "View active login method",
+            "Link/unlink: Email, Phone, Apple, Google, Facebook",
+            "Password update"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Apple Sign-In option only on iOS. Flagship shows Facebook and Google only."
+        },
+        {
+          "name": "User Profile",
+          "description": "Central user identity and personal data used for personalization.",
+          "bullets": [
+            "Display name and avatar",
+            "Date of birth",
+            "Fitness settings (new)",
+            "Goal setting (new)",
+            "Unit preference (metric/imperial)",
+            "Account switcher"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": true },
+          "platform_notes": "Flagship Fitness Settings more detailed: Basic Info (Height/Weight/BMI/Medical conditions), Primary Goal, Fitness Information (Activity/Level/Duration). Android includes health conditions. sGYM: cartoon avatar, no fitness settings."
+        },
+        {
+          "name": "Subscription Management",
+          "description": "Controls access to premium features and content based on membership status.",
+          "bullets": [
+            "Free vs. paid access logic",
+            "Trial handling",
+            "In-app purchases (iOS App Store / Google Play)",
+            "Restore purchases",
+            "Feature gating by subscription tier",
+            "Membership overview in Profile",
+            "Tier name: Sportstech Live+"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Flagship shows Manage Subscription with tier name (Sportstech Live+) and Delete Account option. No in-app purchase flow on Flagship."
+        }
+      ]
+    },
+    {
+      "id": "training-content",
+      "title": "Training & Content",
+      "features": [
+        {
+          "name": "Workout Library",
+          "description": "Browsable video workout library with filtering and search.",
+          "bullets": [
+            "Search bar across all workouts",
+            "Filter tabs: All, Recommended (AI), On Demand, Popular, Landscape",
+            "Advanced filter: Duration (0-20, 20-30, 30-40, 40-50, 50-60, 60-70, >70 min)",
+            "Advanced filter: Activity type, Difficulty (Easy/Medium/Hard), Language (DE/EN)",
+            "Advanced filter: Trainer, Training progress (New / Completed)",
+            "Difficulty badge per card, trainer name, duration and language visible on card",
+            "Device-specific workouts included (e.g. HGX300 advisory video)"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "sGYM has its own exercise library (see sGYM section)."
+        },
+        {
+          "name": "Workout Detail Page",
+          "description": "Full detail view before starting a workout.",
+          "bullets": [
+            "Video preview with trainer and difficulty",
+            "Workout description",
+            "Phase breakdown: Warmup / Training / Cooldown with durations",
+            "Bluetooth device pairing shortcut",
+            "Apple Watch pair shortcut (iOS)",
+            "Start workout CTA"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Android: includes microphone icon in button area. Apple Watch shortcut: iOS only."
+        },
+        {
+          "name": "Training Plans",
+          "description": "Structured multi-session workout programs with progress tracking.",
+          "bullets": [
+            "Plan overview: duration (weeks), number of workouts, equipment type",
+            "AI-recommended plans badge",
+            "Active plan highlighted with progress (x of y weeks / workouts)",
+            "Resume program CTA",
+            "Filter: All / Recommended (AI) / Completed",
+            "Language badge (DE/EN) per plan",
+            "Plan detail view: week-by-week tab structure",
+            "Daily workout schedule: Start / Locked / Rest Day per day",
+            "Sequential unlocking – next workout unlocks only after previous is completed"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Flagship: Current Programme shows description text and completion percentage."
+        },
+        {
+          "name": "In-Workout Player",
+          "description": "Full-screen workout experience with video playback and live metrics.",
+          "bullets": [
+            "Landscape video playback",
+            "Phase timeline (Warmup / Training / Cooldown) with live progress",
+            "Timer: elapsed and total duration",
+            "Live step counter",
+            "Heart rate display (when HRM connected)",
+            "Skip ±5 seconds controls",
+            "HRM connect shortcut during workout",
+            "Settings and End Workout controls"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Flagship player shows additional metrics: Distance, Speed (km/h) with Avg/Best, Inclination, Calories Burned, Average Heart Rate, Heart Rate Zone."
+        },
+        {
+          "name": "Post-Workout Rating",
+          "description": "Star rating prompt shown after completing a workout to collect user feedback.",
+          "bullets": [
+            "Triggered automatically at end of workout",
+            "5-category rating: Overall, Trainer, Music, Stream Quality, Difficulty",
+            "5-star scale per category"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": ""
+        },
+        {
+          "name": "Recipe Library",
+          "description": "Nutrition content with recipes and meal planning.",
+          "bullets": [
+            "Recipe cards with thumbnail, title, difficulty, serving size",
+            "Surfaced on Home Feed alongside workouts",
+            "Flagship: full Recipes & Nutrition section with dedicated page",
+            "Flagship: filter by Meals, Diet, Preparation Time, Calories",
+            "Flagship: Pinned Categories and recipe recommendations",
+            "Flagship: recipe detail with Description, Ingredients, Instructions, Nutrition tabs",
+            "Flagship: star rating per recipe, prep time, calorie count"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Flagship has full dedicated recipe section. iOS/Android: cards on Home Feed only."
+        }
+      ]
+    },
+    {
+      "id": "device-hardware",
+      "title": "Device & Hardware Integration",
+      "features": [
+        {
+          "name": "Bluetooth Device Pairing",
+          "description": "Connect Sportstech hardware and supported devices via Bluetooth.",
+          "bullets": [
+            "Bluetooth toggle and device scan",
+            "Detected device types: Rower, Treadmill, HRM (WHOOP)",
+            "Device model name shown (e.g. FS-AF7604, sProRun-360)",
+            "Pair action per device",
+            "Headphone connection option",
+            "Accessible from workout detail page and player"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": ""
+        },
+        {
+          "name": "Apple Watch Integration",
+          "description": "Sync workouts with Apple Watch for real-time fitness metrics.",
+          "bullets": [
+            "Dedicated Apple Watch pairing screen",
+            "Real-time fitness metrics during workout",
+            "Pair shortcut on workout detail page"
+          ],
+          "platforms": { "ios": true, "android": false, "flagship": false, "sgym": false },
+          "platform_notes": "iOS only."
+        },
+        {
+          "name": "Live Performance Metrics",
+          "description": "Real-time data display during active workout sessions.",
+          "bullets": [
+            "Heart rate (BPM) via HRM device",
+            "Step count (total session)",
+            "Timer: elapsed and total",
+            "Phase progress indicator"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Flagship shows additional metrics: Distance, Speed, Inclination, Calories Burned, Average Heart Rate, Heart Rate Zone."
+        },
+        {
+          "name": "Smart Device Control",
+          "description": "Workout-driven automatic control of connected Sportstech hardware.",
+          "bullets": [
+            "Automatic resistance, speed or incline adjustments",
+            "Manual override by user",
+            "Device-specific safety limits applied"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Device-dependent – not all hardware supports all parameters."
+        }
+      ]
+    },
+    {
+      "id": "flagship-exclusive",
+      "title": "Flagship (sLine) Features",
+      "features": [
+        {
+          "name": "Games & Entertainment Hub",
+          "tag": "Flagship only",
+          "description": "Dedicated entertainment tab on Flagship (sLine) devices with integrated streaming services.",
+          "bullets": [
+            "Dedicated tab in bottom navigation (replaces Sportstech Move tab)",
+            "Integrated streaming: Prime Video, YouTube, Netflix, Disney+",
+            "Runs alongside active workout session",
+            "YouTube available on Flagship only (not iOS/Android)"
+          ],
+          "platforms": { "ios": false, "android": false, "flagship": true, "sgym": false },
+          "platform_notes": "Flagship (sLine) only. YouTube exclusive to Flagship. Apple TV+ not available on Flagship."
+        },
+        {
+          "name": "Calorie Calculator",
+          "description": "Built-in calorie calculation tool accessible from the burger menu.",
+          "bullets": [
+            "Accessible via burger menu",
+            "Integrated with user fitness profile"
+          ],
+          "platforms": { "ios": false, "android": false, "flagship": true, "sgym": true },
+          "platform_notes": "Confirmed on Flagship and sGYM burger menu."
+        },
+        {
+          "name": "Quick Start",
+          "tag": "Flagship only",
+          "description": "Start a free training session without selecting a workout.",
+          "bullets": [
+            "Launch workout without program selection",
+            "Session recorded with distance, speed, calories",
+            "Visible in Activity History alongside regular workouts"
+          ],
+          "platforms": { "ios": false, "android": false, "flagship": true, "sgym": false },
+          "platform_notes": "Flagship only."
+        },
+        {
+          "name": "LED Control",
+          "tag": "Flagship only",
+          "description": "Toggle device LED lighting directly from the Home Feed header.",
+          "bullets": [
+            "LED on/off toggle in Home Feed header",
+            "Current firmware version displayed alongside"
+          ],
+          "platforms": { "ios": false, "android": false, "flagship": true, "sgym": false },
+          "platform_notes": "Hardware-specific feature. Flagship only."
+        },
+        {
+          "name": "Shop Devices",
+          "description": "In-app entry point to browse and purchase Sportstech devices.",
+          "bullets": [
+            "Accessible from burger menu",
+            "Links to Sportstech device store"
+          ],
+          "platforms": { "ios": false, "android": false, "flagship": true, "sgym": true },
+          "platform_notes": "Available in burger menu on Flagship and sGYM."
+        }
+      ]
+    },
+    {
+      "id": "sgym",
+      "title": "sGYM – Device Display Features",
+      "features": [
+        {
+          "name": "sGYM Login – QR Code",
+          "tag": "sGYM only",
+          "description": "Device login via QR code scan using the Sportstech Live mobile app.",
+          "bullets": [
+            "QR code displayed on device screen",
+            "User scans with phone camera to link account",
+            "Also supports: Phone number, Google, Facebook, Email"
+          ],
+          "platforms": { "ios": false, "android": false, "flagship": true, "sgym": true },
+          "platform_notes": "Available on Flagship (sLine) and sGYM."
+        },
+        {
+          "name": "sGYM Home & Training Data",
+          "tag": "sGYM only",
+          "description": "Home screen showing daily training stats and exercise library for sGYM machines.",
+          "bullets": [
+            "Dark theme (portrait format)",
+            "Cartoon avatar as user icon",
+            "Training stats: Duration, Max Weight (kg), Calories – filter: Today / Week / Month",
+            "Classic exercises in 3-column grid view",
+            "Brightness slider in app overlay",
+            "Link to Workout History"
+          ],
+          "platforms": { "ios": false, "android": false, "flagship": false, "sgym": true },
+          "platform_notes": "sGYM only."
+        },
+        {
+          "name": "sGYM Exercise Library",
+          "tag": "sGYM only",
+          "description": "Browsable exercise library with multi-level filtering specific to sGYM hardware.",
+          "bullets": [
+            "Search by exercise name",
+            "Category filter: All / Strength / Full Body / Warm-Up",
+            "Muscle group filter: All / Back / Chest / Abs / Legs / Arms / Shoulders",
+            "Equipment filter: Grip / Barbell / Ankle strap / Hip belt / Double rope / Bench / Yoga mat",
+            "Exercise detail: video, muscle group tag, step-by-step instructions",
+            "Weight adjustment: slider per side with +/– controls"
+          ],
+          "platforms": { "ios": false, "android": false, "flagship": false, "sgym": true },
+          "platform_notes": "sGYM only."
+        },
+        {
+          "name": "sGYM Quick Start",
+          "tag": "sGYM only",
+          "description": "Guided quick-start workout with training mode selection and muscle group targeting.",
+          "bullets": [
+            "Training modes: Standard / Eccentric / Isokinetic / Elastic",
+            "Muscle group selection: Full Body / Back / Chest / Abs / Legs / Arms / Shoulders / Glutes",
+            "Weight settings: slider, sync toggle, weight schema (push/return phase bar chart)",
+            "Start Workout CTA"
+          ],
+          "platforms": { "ios": false, "android": false, "flagship": false, "sgym": true },
+          "platform_notes": "sGYM only. Unique to sGYM hardware capabilities."
+        },
+        {
+          "name": "sGYM Workout History",
+          "tag": "sGYM only",
+          "description": "Session history filtered by time period for sGYM machine sessions.",
+          "bullets": [
+            "Filter: Today / Week / Month",
+            "Shows workout count and session data"
+          ],
+          "platforms": { "ios": false, "android": false, "flagship": false, "sgym": true },
+          "platform_notes": "sGYM only."
+        },
+        {
+          "name": "sGYM Profile & Settings",
+          "tag": "sGYM only",
+          "description": "User profile and device settings on the sGYM display.",
+          "bullets": [
+            "Cartoon avatar with user name",
+            "Account & Security: email address, delete account",
+            "Safety tips screen",
+            "Privacy: Terms of Use, Privacy Policy",
+            "Language / Contact / FAQs",
+            "Burger menu: Profile, Settings, Calorie Calculator, Recipes & Nutrition, Pair Device, Chat, Notifications, Shop Devices, Logout"
+          ],
+          "platforms": { "ios": false, "android": false, "flagship": false, "sgym": true },
+          "platform_notes": "sGYM only. Burger menu differs from sLine."
+        }
+      ]
+    },
+    {
+      "id": "wearables-health",
+      "title": "Wearables & Health",
+      "features": [
+        {
+          "name": "Wearables – Live",
+          "description": "Connect supported wearables to sync fitness data and heart rate.",
+          "bullets": [
+            "Apple Watch – workout sync + real-time metrics (iOS only)",
+            "Fitbit – health data sync",
+            "Garmin – health data sync",
+            "Oura Ring – health data sync"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Apple Watch: iOS only. Android: Fitbit, Garmin, Oura, WHOOP, Suunto, Wahoo, Polar (some Coming Soon). Flagship: Fitbit, Garmin, Oura live."
+        },
+        {
+          "name": "Wearables – Coming Soon",
+          "description": "Announced integrations not yet available.",
+          "bullets": [
+            "WHOOP (full integration coming)",
+            "Suunto",
+            "Wahoo",
+            "Polar"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Shown in app UI as Coming Soon across all platforms."
+        },
+        {
+          "name": "Apple Health / Health Connect",
+          "description": "Read and write health data to the platform health system.",
+          "bullets": [
+            "Apple Health (iOS): accessible from Profile → Services",
+            "Health Connect (Android): dedicated onboarding screen",
+            "Syncs workout and activity data"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": false, "sgym": false },
+          "platform_notes": "Apple Health: iOS only. Health Connect: Android only (Samsung/Android Health Connect confirmed live)."
+        }
+      ]
+    },
+    {
+      "id": "streaming",
+      "title": "Streaming & Entertainment",
+      "features": [
+        {
+          "name": "Entertainment Streaming (iOS & Android)",
+          "description": "Watch streaming services alongside an active workout session on mobile.",
+          "bullets": [
+            "Netflix, Amazon Prime Video, Apple TV+, Disney+",
+            "Runs alongside active workout session",
+            "Accessible via dedicated section in app"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": false, "sgym": false },
+          "platform_notes": "iOS and Android only. On Flagship, streaming is part of the Games & Entertainment hub (see Flagship section)."
+        }
+      ]
+    },
+    {
+      "id": "sportstech-move",
+      "title": "Sportstech Move",
+      "features": [
+        {
+          "name": "Sportstech Move",
+          "description": "AI-powered walking and movement coaching system with personalized plans.",
+          "bullets": [
+            "Dedicated Move section with own branding",
+            "AI-generated personalized walking plans",
+            "Plan recommendations: difficulty level, weeks, number of workouts",
+            "AI disclaimer shown before plan generation",
+            "Filter: All / Completed plans",
+            "Android: device selection (Favorites/All/WRX500/Floor Mat/All Workouts)",
+            "Community integration: AI-based motivation"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": false, "sgym": false },
+          "platform_notes": "Not available on Flagship – replaced by Games & Entertainment tab."
+        }
+      ]
+    },
+    {
+      "id": "ai-intelligence",
+      "title": "AI & Intelligence",
+      "features": [
+        {
+          "name": "AI Coach",
+          "description": "Conversational AI assistant for personalized fitness and nutrition guidance.",
+          "bullets": [
+            "Dedicated chat interface with free-text input",
+            "Pre-suggested question chips (contextual, refresh after each response)",
+            "Responses personalized based on fitness settings (level, workout type, duration)",
+            "Workout recommendations as clickable cards directly in chat",
+            "Fitness and nutrition Q&A",
+            "Thumbs up / thumbs down feedback per response",
+            "Disclaimer shown on first use (no medical advice)"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Personalization requires Fitness Settings to be configured. Scoped to fitness & nutrition only."
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "title": "Community",
+      "features": [
+        {
+          "name": "Challenges",
+          "tag": "Beta",
+          "description": "Time-limited fitness challenges for community engagement.",
+          "bullets": [
+            "Filter: Active / Upcoming / Completed",
+            "Challenge detail with participation status",
+            "Past challenges visible with end date"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Beta on all platforms."
+        },
+        {
+          "name": "Community Feed",
+          "tag": "Beta",
+          "description": "Social feed with posts and content from Sportstech Live.",
+          "bullets": [
+            "Posts with images and links",
+            "Reactions and comments",
+            "Content from Sportstech Live brand account"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Beta on all platforms."
+        },
+        {
+          "name": "Leaderboard",
+          "tag": "Beta",
+          "description": "Community performance ranking based on points.",
+          "bullets": [
+            "Ranked list with points per user",
+            "Filter: All time / Week / Month / Year",
+            "User search",
+            "Personal points shown at top"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Beta. Flagship: Leaderboard tab combines Friends + Community Ranking + Latest News on one screen."
+        },
+        {
+          "name": "Friends",
+          "tag": "Beta",
+          "description": "Social graph feature to connect with other users.",
+          "bullets": [
+            "Add friends by search",
+            "View friend requests",
+            "Browse all users"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Beta on all platforms."
+        },
+        {
+          "name": "News",
+          "tag": "Beta",
+          "description": "In-app news feed with Sportstech and community updates.",
+          "bullets": [
+            "Sportstech News section",
+            "Community News section"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Beta on all platforms."
+        }
+      ]
+    },
+    {
+      "id": "progress-analytics",
+      "title": "Progress & Analytics",
+      "features": [
+        {
+          "name": "My Dashboard / Activity History",
+          "description": "Personal activity and health analytics hub.",
+          "bullets": [
+            "Daily activity ring: Calories, Distance, Workout Duration, Steps, Heart Rate",
+            "Tab: Activity – Workout Duration, Calories, Distance, Steps (last 7 days)",
+            "Tab: Health Data – Heart Rate, HRV, Resting HR, Sleep",
+            "Tab: Others – Weight, BMI",
+            "Share dashboard option",
+            "Quick link to Workout History",
+            "Goal setting shortcut"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Called Activity History on Flagship. Flagship Health tab: HR, Resting HR, Sleep (no HRV). Flagship Others: Weight + BMI only."
+        },
+        {
+          "name": "Workout History",
+          "description": "Overview of all completed training sessions.",
+          "bullets": [
+            "List of past workouts with session summaries",
+            "Device and activity tracking",
+            "Accessible from Dashboard",
+            "Flagship: filter by Week / Month / Year / Lifetime",
+            "Flagship: per-session detail shows speed (km/h) and calories",
+            "Flagship: Quick Start sessions also recorded"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": true },
+          "platform_notes": "sGYM: filter Today / Week / Month. Flagship shows more detail per session than mobile."
+        }
+      ]
+    },
+    {
+      "id": "home-feed",
+      "title": "Home Feed",
+      "features": [
+        {
+          "name": "Home Feed",
+          "description": "Personalized central screen combining activity summary, content discovery and feature entry points.",
+          "bullets": [
+            "Personalized greeting with username",
+            "Today activity summary ring (Calories, Distance, Duration, Steps)",
+            "AI Coach entry point banner",
+            "Recommended Workouts (horizontal scroll)",
+            "Training Plans section",
+            "Recipes section",
+            "Sportstech Move floating button (iOS/Android)"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": false },
+          "platform_notes": "Flagship Home Feed also shows LED toggle and current firmware version. No Sportstech Move button on Flagship."
+        }
+      ]
+    },
+    {
+      "id": "notifications",
+      "title": "Notifications & Lifecycle",
+      "features": [
+        {
+          "name": "Push Notifications",
+          "description": "Lifecycle and engagement messaging to drive retention.",
+          "bullets": [
+            "Workout and movement reminders",
+            "Plan adherence nudges",
+            "Subscription-related messages"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": false, "sgym": true },
+          "platform_notes": "sGYM: Notifications accessible as dedicated menu item in burger menu."
+        }
+      ]
+    },
+    {
+      "id": "support-settings",
+      "title": "Support & Settings",
+      "features": [
+        {
+          "name": "Support & Feedback",
+          "description": "In-app channels for user feedback and help.",
+          "bullets": [
+            "Contact form / support link",
+            "FAQ section",
+            "App rating prompt (new)",
+            "Privacy policy accessible in-app"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": true },
+          "platform_notes": ""
+        },
+        {
+          "name": "App Settings",
+          "description": "User-facing configuration options.",
+          "bullets": [
+            "Unit preference (metric / imperial)",
+            "Fitness settings (new)",
+            "Goal setting (new)",
+            "Language selection"
+          ],
+          "platforms": { "ios": true, "android": true, "flagship": true, "sgym": true },
+          "platform_notes": "sGYM: Language change accessible from More menu."
+        }
+      ]
+    }
+  ]
+};
+
+// TAG STYLE MAP
+const tagClass = {
+  'Beta': 'tag-beta',
+  'New': 'tag-new',
+  'Flagship only': 'tag-flagship',
+  'sGYM only': 'tag-sgym'
+};
+
+// PLATFORM CONFIG
+const platformConfig = [
+  { key: 'ios', label: 'iOS', activeClass: 'active-ios' },
+  { key: 'android', label: 'Android', activeClass: 'active-android' },
+  { key: 'flagship', label: 'Flagship', activeClass: 'active-flagship' },
+  { key: 'sgym', label: 'sGYM', activeClass: 'active-sgym' }
+];
+
+function buildCard(feature) {
+  const tagHtml = feature.tag
+    ? `<span class="tag ${tagClass[feature.tag] || 'tag-new'}">${feature.tag}</span>`
+    : '';
+
+  const bulletsHtml = feature.bullets.map(b => `<li>${b}</li>`).join('');
+
+  const platformsHtml = platformConfig.map(p => {
+    const active = feature.platforms[p.key];
+    return `<span class="platform-badge ${active ? p.activeClass : 'inactive'}">${p.label}</span>`;
+  }).join('');
+
+  const notesHtml = feature.platform_notes
+    ? `<p class="platform-notes">${feature.platform_notes}</p>`
+    : '';
+
+  // Build data attributes for filtering
+  const platformAttrs = platformConfig
+    .filter(p => feature.platforms[p.key])
+    .map(p => `data-${p.key}="true"`)
+    .join(' ');
+
+  return `
+    <div class="feature-card" ${platformAttrs}>
+      <div class="card-header">
+        <span class="card-name">${feature.name}</span>
+        ${tagHtml}
+      </div>
+      <p class="card-desc">${feature.description}</p>
+      <div class="card-divider"></div>
+      <ul class="card-bullets">${bulletsHtml}</ul>
+      <div class="platform-row">${platformsHtml}</div>
+      ${notesHtml}
+    </div>
+  `;
+}
+
+function buildCatalog() {
+  const catalog = document.getElementById('catalog');
+  catalog.innerHTML = data.sections.map(section => {
+    const cardsHtml = section.features.map(buildCard).join('');
+    return `
+      <section class="section" id="${section.id}">
+        <div class="section-header">
+          <h2 class="section-title">${section.title}</h2>
+          <span class="section-count">${section.features.length} feature${section.features.length !== 1 ? 's' : ''}</span>
+        </div>
+        <div class="card-grid">${cardsHtml}</div>
+      </section>
+    `;
+  }).join('');
+}
+
+// FILTER LOGIC
+let activeFilter = 'all';
+
+function applyFilter(filter) {
+  activeFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.filter === filter);
+  });
+
+  document.querySelectorAll('.section').forEach(section => {
+    const cards = section.querySelectorAll('.feature-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset[filter] === 'true') {
+        card.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    section.classList.toggle('all-hidden', visibleCount === 0);
+  });
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+});
+
+// SCROLL ANIMATIONS
+function checkVisibility() {
+  document.querySelectorAll('.section').forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 60) {
+      section.classList.add('visible');
+    }
+  });
+}
+
+// INIT
+buildCatalog();
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+});
+window.addEventListener('scroll', checkVisibility, { passive: true });
+setTimeout(checkVisibility, 100);
+</script>
+</body>
+</html>
